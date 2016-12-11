@@ -43,7 +43,7 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
 
     $scope.serviceTerms = function() {
         var myPopup = $ionicPopup.show({
-            templateUrl: '../templates/service-terms.html',
+            templateUrl: 'templates/service-terms.html',
             title: '梁山圈软件服务协议',
             subTitle: '',
             scope: $scope,
@@ -55,7 +55,7 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
 
     $scope.privacyPolice = function() {
         var myPopup = $ionicPopup.show({
-            templateUrl: '../templates/privacy-police.html',
+            templateUrl: 'templates/privacy-police.html',
             title: '梁山圈隐私政策',
             subTitle: '',
             scope: $scope,
@@ -67,7 +67,7 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
 
     $scope.usageRules = function() {
         var myPopup = $ionicPopup.show({
-            templateUrl: '../templates/usage-rules.html',
+            templateUrl: 'templates/usage-rules.html',
             title: '梁山圈个人帐号使用规范',
             subTitle: '',
             scope: $scope,
