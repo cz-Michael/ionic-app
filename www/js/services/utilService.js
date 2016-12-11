@@ -6,9 +6,10 @@ app.factory('UtilService', function($q) {
   var imageMaxSize = 400;
   var forbiddenWordsList = [
     "幹你娘","幹你媽","干你妈","王八蛋","他媽的","他妈的","操他媽","操他妈","去你媽","去你妈","婊子","妓女",
-    "狗日","雜種","幹你","干你","幹您","干您","贛你","贛您","贛林","林北","恁爸","恁娘","賤人","贱人",
+    "狗日","雜種","幹你","干你","幹您","干您","贛你","贛您","贛林","林北","恁爸","恁娘","賤人","贱人","日你",
     "賤種","贱种","老母","屁眼","混蛋","渾蛋","混蛋","混帳","混账","操你","雞巴","鸡巴","王八","懶趴",
-    "祖媽","白目","白癡","援交","婊","妓","洨","肏","屄","政府","党","共产党","法轮功","法轮","一党","中共",
+    "祖媽","白目","白癡","援交","婊","妓","洨","肏","屄","政府","共产党","法轮功","法轮","一党","中共",
+    "近平","泽民","锦涛","邓小平","李鹏","上海帮","共匪","北京帮",
     "ahole","anus","ash0le","ash0les","asholes","ass","Ass Monkey","Assface","assh0le","assh0lez",
     "asshole","assholes","assholz","asswipe","azzhole","bassterds","bastard","bastards","bastardz",
     "basterds","basterdz","Biatch","bitch","bitches","Blow Job","boffing","butthole","buttwipe",

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, UserService) {
+app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, UserService, UtilService) {
     //Didsplay back button
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = true;
@@ -19,7 +19,7 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
         UserService.signUp({
             username: user.username,
             password: user.password,
-            nickname: user.nickname
+            nickname: UtilService.cleanSentence(user.nickname)
         }).then(function(result) {
             $scope.success = true;
             $rootScope.username = result.user.username;

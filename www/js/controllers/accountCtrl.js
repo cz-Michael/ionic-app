@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService) {
+app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService, UtilService) {
 	$scope.account = Object.assign({}, $rootScope.user); // Object clone
 
 	$scope.settings = {
@@ -69,10 +69,12 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
     		});
 			}, 2000);
 		} else if ($scope.account.nickname != $rootScope.user.nickname) {
+			var nickname = UtilService.cleanSentence($scope.account.nickname)
+			$scope.account.nickname = nickname
 			UserService.update($rootScope.user._id, {
-				nickname: $scope.account.nickname
+				nickname: nickname
 			}).then(function(result) {
-				$rootScope.user.nickname = $scope.account.nickname;
+				$rootScope.user.nickname = nickname
 				$localStorage.setObject('user', $rootScope.user);
 			}, function(err) {
 				console.log('err', err);
