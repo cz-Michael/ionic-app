@@ -13,8 +13,10 @@ app.controller('ChatDetailCtrl', function($scope, $rootScope, $stateParams, Chat
 
 
   function gotoBottom(id){
-     var ele = document.getElementById(id)
-     ele.scrollTop = ele.scrollHeight
+    setTimeout(function(){
+      var ele = document.getElementById(id)
+      ele.scrollTop = ele.scrollHeight
+    }, 0)
   }
 
   $scope.gotoBottom = gotoBottom
