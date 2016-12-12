@@ -36,7 +36,7 @@ app.controller('ChatDetailCtrl', function($scope, $rootScope, $state, $statePara
           setTimeout(function() {
             gotoBottom('chat-message-list')
             if ($scope.chat.unread_by.indexOf($rootScope.user._id) > -1) {
-              $rootScope.chatBadge = $rootScope.chatBadge-1;
+              $rootScope.chatBadge = $rootScope.chatBadge > 0 ? ($rootScope.chatBadge-1) : 0;
             }
           }, 0)
         }, function(error) {})
