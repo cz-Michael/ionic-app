@@ -6,6 +6,22 @@ app.controller('ChatsCtrl', function($scope, $state, $stateParams, $rootScope, C
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
+
+  function refresh() {
+    if ($rootScope.user) {
+      ChatService.getChatsByUid($rootScope.user._id).then(function(data) {
+        $rootScope.chats = data
+      }, function(error) {})
+      ChatService.getUnreadChatsByUid($rootScope.user._id).then(function(data) {
+        if (data) {
+          $rootScope.chatBadge = data.length
+        }
+      }, function(err){})
+    } else {
+      $rootScope.chats = []
+    }
+  }
+
   $scope.$on('$ionicView.enter', function(e) {
     if ($rootScope.redirectToChatId) {
       setTimeout(function() {
@@ -13,20 +29,17 @@ app.controller('ChatsCtrl', function($scope, $state, $stateParams, $rootScope, C
         $rootScope.redirectToChatId = null
       }, 0)
     } else {
-      if ($rootScope.user) {
-        ChatService.getChatsByUid($rootScope.user._id).then(function(data) {
-          $rootScope.chats = data
-        }, function(error) {})
-        ChatService.getUnreadChatsByUid($rootScope.user._id).then(function(data) {
-          if (data) {
-            $rootScope.chatBadge = data.length
-          }
-        }, function(err){})
-      } else {
-        $rootScope.chats = []
-      }
+      refresh()
     }
   });
+
+  $rootScope.$on('onResume', function(){
+    if ($state.current.name == 'tab.chats') {
+      refresh()
+    }
+  })
+
+  $scope.refresh = refresh
 
   $scope.openChatDetails = function(chat) {
     if (chat.unread_by.indexOf($rootScope.user._id) > -1) {

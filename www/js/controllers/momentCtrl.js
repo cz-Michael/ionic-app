@@ -29,29 +29,31 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 	});
 
 	$rootScope.$on('onResume', function(){
-		$ionicLoading.show({
-			template: '求其一等...'
-        });
-      	PostService.getTwenty((new Date()).getTime()).then(function(data) {
-			$scope.posts = [];
-			data.map(function(item){
-				item.created_at_from_now = moment(new Date(item.created_at)).fromNow();
-				$scope.posts.push(item)
-	        });
-	        $ionicLoading.hide();
-		}, function(error) {
+		if ($state.current.name == 'tab.moment') {
 			$ionicLoading.show({
-				template: '网络错误...'
+				template: '求其一等...'
 	        });
-	        setTimeout(function() {
-				$ionicLoading.hide();
-	        }, 3000);
-		});
-		if ($rootScope.user) {
-			PostService.getNewComment().then(function(data) {
-				$scope.newComments = data.comments;
-				$rootScope.momentBadge = data.comments.length;
-			}, function(error) {});
+	      	PostService.getTwenty((new Date()).getTime()).then(function(data) {
+				$scope.posts = [];
+				data.map(function(item){
+					item.created_at_from_now = moment(new Date(item.created_at)).fromNow();
+					$scope.posts.push(item)
+		        });
+		        $ionicLoading.hide();
+			}, function(error) {
+				$ionicLoading.show({
+					template: '网络错误...'
+		        });
+		        setTimeout(function() {
+					$ionicLoading.hide();
+		        }, 3000);
+			});
+			if ($rootScope.user) {
+				PostService.getNewComment().then(function(data) {
+					$scope.newComments = data.comments;
+					$rootScope.momentBadge = data.comments.length;
+				}, function(error) {});
+			}
 		}
     });
 
@@ -165,8 +167,6 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 		} else {
 			loginConfirm();
 		}
-
-
 	};
 
 	$scope.toggleComments = function(post) {
