@@ -1,6 +1,9 @@
 <ion-view view-title="啦呱">
   <ion-content style="margin-top: 12px;" on-scroll-top="refresh">
     <ion-list>
+      <div style="text-align: center;">
+        <ion-spinner class="spinner-assertive" ng-if='isLoading' icon="lines"></ion-spinner>
+      </div>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" ng-click="openChatDetails(chat)">
           <img ng-src="{{chat.face || './img/default_photo.png'}}" ng-style="{opacity: chat.blocked_by && chat.blocked_by.indexOf(user._id) > -1 ? 0.3 : 1}">
           <h2 ng-style="{opacity: chat.blocked_by && chat.blocked_by.indexOf(user._id) > -1 ? 0.3 : 1}">{{chat.name}}</h2>

@@ -1,8 +1,9 @@
 'use strict';
 
-app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, $ionicPlatform, $ionicLoading, $ionicActionSheet, $ionicPopup, PostService) {
+app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, $ionicPlatform, $ionicActionSheet, $ionicPopup, PostService) {
 	$scope.posts = [];
 	$scope.newComments = [];
+	$scope.isLoading = false;
 
 	PostService.getTwenty((new Date()).getTime()).then(function(data) {
 		data.map(function(item){
@@ -30,23 +31,17 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 
 	$rootScope.$on('onResume', function(){
 		if ($state.current.name == 'tab.moment') {
-			$ionicLoading.show({
-				template: '求其一等...'
-	        });
+	        $scope.isLoading = true;
 	      	PostService.getTwenty((new Date()).getTime()).then(function(data) {
 				$scope.posts = [];
 				data.map(function(item){
 					item.created_at_from_now = moment(new Date(item.created_at)).fromNow();
 					$scope.posts.push(item)
 		        });
-		        $ionicLoading.hide();
+		        $scope.isLoading = false;
 			}, function(error) {
-				$ionicLoading.show({
-					template: '网络错误...'
-		        });
-		        setTimeout(function() {
-					$ionicLoading.hide();
-		        }, 3000);
+				$scope.isLoading = false;
+
 			});
 			if ($rootScope.user) {
 				PostService.getNewComment().then(function(data) {
@@ -63,9 +58,7 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 			return
 		}
 		isLoading = true
-		$ionicLoading.show({
-			template: '求其一等...'
-        });
+		$scope.isLoading = true;
 		PostService.getTwenty((new Date()).getTime()).then(function(data) {
 			$scope.posts = [];
 			data.map(function(item){
@@ -73,15 +66,9 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 				$scope.posts.push(item)
 	        });
 	        isLoading = false
-	        $ionicLoading.hide();
+	        $scope.isLoading = false;
 		}, function(error) {
-			$ionicLoading.show({
-				template: '网络错误...'
-	        });
-	        isLoading = false
-	        setTimeout(function() {
-				$ionicLoading.hide();
-	        }, 3000);
+			$scope.isLoading = false;
 		});
 		if ($rootScope.user) {
 			PostService.getNewComment().then(function(data) {
@@ -94,23 +81,16 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 	}
 
 	$scope.getNew = function() {
-		$ionicLoading.show({
-          	template: '求其一等...'
-        });
+		$scope.isLoading = true;
         var timePoint = $scope.posts[0] ? (new Date($scope.posts[0].created_at)) : (new Date())
 		PostService.getNew(timePoint.getTime()).then(function(data) {
 			data.map(function(item){
 	         	item.created_at_from_now = moment(new Date(item.created_at)).fromNow();
 	         	$scope.posts.unshift(item)
 	        })
-			$ionicLoading.hide();
+			$scope.isLoading = false;
 		}, function(error) {
-			$ionicLoading.show({
-				template: '网络错误...'
-	        });
-	        setTimeout(function() {
-				$ionicLoading.hide();
-	        }, 3000);
+			$scope.isLoading = false;
 		});
 		PostService.getNewComment().then(function(data) {
 			$scope.newComments = data.comments;
