@@ -22,11 +22,11 @@
             </label>
             <label class="item item-input" ng-class="{'input-error': !accountForm.phone.$valid}">
                 <span class="input-label">现所在地</span>
-                <input type="text" name="phone" placeholder="现在在哪里混呢？" style="text-align:right;" ng-model="account.residence" ng-minlength="1" ng-maxlength="8" ng-blur="updateResidence(accountForm)">
+                <input type="text" name="residence" placeholder="现在在哪里混呢？" style="text-align:right;" ng-model="account.residence" ng-minlength="1" ng-maxlength="10" ng-blur="updateResidence(accountForm)">
             </label>
             <label class="item item-input" ng-class="{'input-error': !accountForm.phone.$valid}">
                 <span class="input-label">职业</span>
-                <input type="text" name="phone" placeholder="你是干啥哩？" style="text-align:right;" ng-model="account.occupation" ng-minlength="1" ng-maxlength="8" ng-blur="updateOccupation(accountForm)">
+                <input type="text" name="occupation" placeholder="你是干啥哩？" style="text-align:right;" ng-model="account.occupation" ng-minlength="1" ng-maxlength="10" ng-blur="updateOccupation(accountForm)">
             </label>
             <!-- <ion-toggle  ng-model="settings.enableFriends">
                 公开我的信息

@@ -128,7 +128,15 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
 	}
 
 	$scope.updateResidence = function(accountForm) {
-		if ($scope.account.residence != $rootScope.user.residence) {
+		if (!accountForm.residence.$valid) {
+			$scope.errorMsg = accountForm.residence.$error.maxlength ? "你这个名忒长！" : "咋咋都得给个名哎！";
+			setTimeout(function(){
+				$scope.$apply(function(){
+					$scope.errorMsg = false;
+					$scope.account.residence = $rootScope.user.residence;
+				});
+			}, 2000);
+		} else if ($scope.account.residence != $rootScope.user.residence) {
 			UserService.update($rootScope.user._id, {
 				residence: $scope.account.residence
 			}).then(function(result) {
@@ -141,7 +149,15 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
 	}
 
 	$scope.updateOccupation = function(accountForm) {
-		if ($scope.account.occupation != $rootScope.user.occupation) {
+		if (!accountForm.occupation.$valid) {
+			$scope.errorMsg = accountForm.occupation.$error.maxlength ? "你这个名忒长！" : "咋咋都得给个名哎！";
+			setTimeout(function(){
+				$scope.$apply(function(){
+					$scope.errorMsg = false;
+					$scope.account.occupation = $rootScope.user.occupation;
+				});
+			}, 2000);
+		} else if ($scope.account.occupation != $rootScope.user.occupation) {
 			UserService.update($rootScope.user._id, {
 				occupation: $scope.account.occupation
 			}).then(function(result) {

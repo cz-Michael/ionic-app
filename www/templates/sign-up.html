@@ -48,11 +48,11 @@
         </label>
         <label class="item item-input">
           <span class="input-label">现所在地</span>
-          <input type="text" name="residence" ng-model="user.residence" placeholder="现在在哪里混呢？" ng-required="true" ng-minlength="1" ng-maxlength="20">
+          <input type="text" name="residence" ng-model="user.residence" placeholder="现在在哪里混呢？" ng-required="true" ng-minlength="1" ng-maxlength="8">
         </label>
         <label class="item item-input">
           <span class="input-label">职业</span>
-          <input type="text" name="occupation" ng-model="user.occupation" placeholder="你是干啥哩？" ng-required="true" ng-minlength="1" ng-maxlength="20">
+          <input type="text" name="occupation" ng-model="user.occupation" placeholder="你是干啥哩？" ng-required="true" ng-minlength="1" ng-maxlength="8">
         </label>
         <div ng-show="signUpForm.confirm_password.$error.match" align="center" style="color: red">
           <i class="icon ion-close-circled"></i>密码不一致.

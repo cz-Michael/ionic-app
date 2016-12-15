@@ -21,13 +21,19 @@
       </div>
 
     <div class="item item-body post-item-body" style="font-size: 10px;">
-      <span>老家所在地: {{posts[0].posted_by.home_town || '保密'}}</span>
-      <br/>
-      <span>现在居住地: {{posts[0].posted_by.residence || '保密'}}</span>
-      <br/>
-      <span>电子邮箱: {{posts[0].posted_by.email || '保密'}}</span>
-      <br/>
-      <span>电话号码: {{posts[0].posted_by.phone || '保密'}}</span>
+      <table style="text-align: left; width: 100%;">
+        <tr>
+          <th>老家所在地: {{posts[0].posted_by.home_town || '保密'}}</th>
+          <th>现在居住地: {{posts[0].posted_by.residence || '保密'}}</th>
+        </tr>
+        <tr>
+          <th>职业: {{posts[0].posted_by.occupation || '保密'}}</th>
+          <th>电话号码: {{posts[0].posted_by.phone || '保密'}}</th>
+        </tr>
+        <tr>
+          <th>电子邮箱: {{posts[0].posted_by.email || '保密'}}</th>
+        </tr>
+      </table>
     </div>
 
     <div class="list card customized-card" ng-repeat="post in posts">
