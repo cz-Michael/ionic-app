@@ -6,8 +6,26 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
         viewData.enableBack = true;
     });
 
-    $scope.readAndAgree = true
 
+    $scope.chooseHometown = function () {
+        $ionicPopup.show({
+            templateUrl: 'templates/home-towns.html',
+            title: '选择你的老家',
+            subTitle: '',
+            scope: $scope,
+            buttons: [
+                {
+                    text: '<b>确认</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        console.log($scope.homeTown)
+                    }
+                }
+            ]
+        });
+    }
+
+    $scope.readAndAgree = true
     $scope.signUp = function(user) {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.close();

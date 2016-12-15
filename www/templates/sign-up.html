@@ -18,6 +18,44 @@
           <span class="input-label">确认密码</span>
           <input type="password" name="confirm_password" ng-model="user.confirm_password" ng-match="user.password" ng-required="true">
         </label>
+        <label class="item item-input">
+            <!-- <ion-label>Gender</ion-label>
+            <ion-select ng-model="user.gender">
+              <ion-option value="f" selected="true">Female</ion-option>
+              <ion-option value="m">Male</ion-option>
+            </ion-select> -->
+
+          <span class="input-label">性别</span>
+          <!-- <select name="gender">
+            <option value="male" ng-selected="true">男</option>
+            <option value="femal">女</option>
+          </select> -->
+          <ion-radio ng-model="user.gender" ng-value="'male'">男</ion-radio>
+          <ion-radio ng-model="user.gender" ng-value="'femal'">女</ion-radio>
+        </label>
+
+
+        <label class="item item-input">
+          <span class="input-label">老家所在乡镇</span>
+          <button ng-click="chooseHometown()">梁山镇</button>
+          <!-- <ion-radio ng-model="user.home_town" ng-value="'male'">梁山镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">小路口镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">韩岗镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">徐集镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">拳铺镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'femal'">杨营镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">韩垓镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">馆驿镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">小安山镇</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">马营乡</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">寿张集乡</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">黑虎庙乡</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">赵固堆乡</ion-radio>
+          <ion-radio ng-model="user.home_town" ng-value="'male'">大路口乡</ion-radio> -->
+        </label>
+
+
+
         <div ng-show="signUpForm.confirm_password.$error.match" align="center" style="color: red">
           <i class="icon ion-close-circled"></i>密码不一致.
         </div>
