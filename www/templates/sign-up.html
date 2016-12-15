@@ -1,5 +1,5 @@
 <ion-view view-title="注册">
-  <ion-content class="ion-content-position" style="margin-top: 12px;">
+  <ion-content class="ion-content-position" overflow-scroll="false">
     <form name="signUpForm" novalidate ng-submit="submit(user)">
       <div class="list">
         <label class="item item-input">
@@ -18,44 +18,42 @@
           <span class="input-label">确认密码</span>
           <input type="password" name="confirm_password" ng-model="user.confirm_password" ng-match="user.password" ng-required="true">
         </label>
-        <label class="item item-input">
-            <!-- <ion-label>Gender</ion-label>
-            <ion-select ng-model="user.gender">
-              <ion-option value="f" selected="true">Female</ion-option>
-              <ion-option value="m">Male</ion-option>
-            </ion-select> -->
-
+        <label class="item item-input item-select">
           <span class="input-label">性别</span>
-          <!-- <select name="gender">
-            <option value="male" ng-selected="true">男</option>
+          <select name="gender" ng-model="user.gender" ng-init="user.gender='male'">
+            <option value="male">男</option>
             <option value="femal">女</option>
-          </select> -->
-          <ion-radio ng-model="user.gender" ng-value="'male'">男</ion-radio>
-          <ion-radio ng-model="user.gender" ng-value="'femal'">女</ion-radio>
+          </select>
         </label>
-
-
-        <label class="item item-input">
+        <label class="item item-input item-select">
           <span class="input-label">老家所在乡镇</span>
-          <button ng-click="chooseHometown()">梁山镇</button>
-          <!-- <ion-radio ng-model="user.home_town" ng-value="'male'">梁山镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">小路口镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">韩岗镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">徐集镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">拳铺镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'femal'">杨营镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">韩垓镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">馆驿镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">小安山镇</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">马营乡</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">寿张集乡</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">黑虎庙乡</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">赵固堆乡</ion-radio>
-          <ion-radio ng-model="user.home_town" ng-value="'male'">大路口乡</ion-radio> -->
+          <select name="gender" ng-model="user.home_town" ng-init="user.home_town='梁山县城'">
+            <option value="梁山县城">梁山县城</option>
+            <option value="梁山镇">梁山镇</option>
+            <option value="小路口镇">小路口镇</option>
+            <option value="韩岗镇">韩岗镇</option>
+            <option value="徐集镇">徐集镇</option>
+            <option value="拳铺镇">拳铺镇</option>
+            <option value="杨营镇">杨营镇</option>
+            <option value="韩垓镇">韩垓镇</option>
+            <option value="馆驿镇">馆驿镇</option>
+            <option value="小安山镇">小安山镇</option>
+            <option value="马营乡">马营乡</option>
+            <option value="寿张集乡">寿张集乡</option>
+            <option value="黑虎庙乡">黑虎庙乡</option>
+            <option value="赵固堆乡">赵固堆乡</option>
+            <option value="大路口乡">大路口乡</option>
+            <option value="外地">外地</option>
+          </select>
         </label>
-
-
-
+        <label class="item item-input">
+          <span class="input-label">现所在地</span>
+          <input type="text" name="residence" ng-model="user.residence" placeholder="现在在哪里混呢？" ng-required="true" ng-minlength="1" ng-maxlength="20">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">职业</span>
+          <input type="text" name="occupation" ng-model="user.occupation" placeholder="你是干啥哩？" ng-required="true" ng-minlength="1" ng-maxlength="20">
+        </label>
         <div ng-show="signUpForm.confirm_password.$error.match" align="center" style="color: red">
           <i class="icon ion-close-circled"></i>密码不一致.
         </div>

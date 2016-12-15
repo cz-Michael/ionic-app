@@ -37,7 +37,11 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
         UserService.signUp({
             username: user.username,
             password: user.password,
-            nickname: UtilService.cleanSentence(user.nickname)
+            nickname: UtilService.cleanSentence(user.nickname),
+            gender: user.gender,
+            home_town: user.home_town,
+            residence: user.residence,
+            occupation: user.occupation
         }).then(function(result) {
             $scope.success = true;
             $rootScope.username = result.user.username;
