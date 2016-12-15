@@ -46,7 +46,7 @@ app.factory('UtilService', function($q) {
     "cazzo","chraa","chuj","Cock*","cunt*","d4mn","daygo","dego","dick*","dike*","dupa","dziwka",
     "ejackulate","Ekrem*","Ekto","enculer","faen","fag*","fanculo","fanny","feces","feg","Felcher",
     "ficken","fitt*","Flikker","foreskin","Fotze","Fu(*","fuk*","futkretzn","gay","gook","guiena",
-    "h0r","h4x0r","hell","helvete","hoer*","honkey","Huevon","hui","injun","jizz","kanker*","kike",
+    "h0r","h4x0r","helvete","hoer*","honkey","Huevon","hui","injun","jizz","kanker*","kike",
     "klootzak","kraut","knulle","kuk","kuksuger","Kurac","kurwa","kusi*","kyrpa*","lesbo","mamhoon",
     "masturbat*","merd*","mibun","monkleigh","mouliewop","muie","mulkku","muschi","nazis","nepesaurio",
     "nigger*","orospu","paska*","perse","picka","pierdol*","pillu*","pimmel","piss*","pizda",
