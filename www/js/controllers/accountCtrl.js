@@ -127,6 +127,32 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
 		}
 	}
 
+	$scope.updateResidence = function(accountForm) {
+		if ($scope.account.residence != $rootScope.user.residence) {
+			UserService.update($rootScope.user._id, {
+				residence: $scope.account.residence
+			}).then(function(result) {
+				$rootScope.user.residence = $scope.account.residence;
+				$localStorage.setObject('user', $rootScope.user);
+			}, function(err) {
+				console.log('err', err);
+			});
+		}
+	}
+
+	$scope.updateOccupation = function(accountForm) {
+		if ($scope.account.occupation != $rootScope.user.occupation) {
+			UserService.update($rootScope.user._id, {
+				occupation: $scope.account.occupation
+			}).then(function(result) {
+				$rootScope.user.occupation = $scope.account.occupation;
+				$localStorage.setObject('user', $rootScope.user);
+			}, function(err) {
+				console.log('err', err);
+			});
+		}
+	}
+
 	var openPhotoCamera = function() {
 		var options = {
 			quality : 75,
