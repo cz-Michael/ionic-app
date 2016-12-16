@@ -2,12 +2,13 @@
 
 app.controller('MomentCreateCtrl', function($scope, $state, $rootScope, $q, $ionicLoading, $ionicActionSheet, $cordovaCamera, PostService, UtilService) {
 	$scope.post = {uid: $rootScope.user._id, content: '', images: []};
+
 	$scope.createMoment = function() {
 		$ionicLoading.show({
 		  template: '发布中，求其一等...'
 		});
-		PostService.create($scope.post)
-		.then(function(result) {
+		$scope.post.content = UtilService.cleanSentence($scope.post.content)
+		PostService.create($scope.post).then(function(result) {
 			$ionicLoading.hide();
 			$state.go('tab.moment', {});
 		}, function(error) {
@@ -35,7 +36,6 @@ app.controller('MomentCreateCtrl', function($scope, $state, $rootScope, $q, $ion
 				// add cancel code..
 			},
 			buttonClicked: function(index) {
-				console.log(index);
 				if (index === 0) {
 					openPhotoCamera();
 				} else {

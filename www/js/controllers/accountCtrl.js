@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService) {
+app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService, UtilService) {
 	$scope.account = Object.assign({}, $rootScope.user); // Object clone
 
 	$scope.settings = {
@@ -69,10 +69,12 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
     		});
 			}, 2000);
 		} else if ($scope.account.nickname != $rootScope.user.nickname) {
+			var nickname = UtilService.cleanSentence($scope.account.nickname)
+			$scope.account.nickname = nickname
 			UserService.update($rootScope.user._id, {
-				nickname: $scope.account.nickname
+				nickname: nickname
 			}).then(function(result) {
-				$rootScope.user.nickname = $scope.account.nickname;
+				$rootScope.user.nickname = nickname
 				$localStorage.setObject('user', $rootScope.user);
 			}, function(err) {
 				console.log('err', err);
@@ -118,6 +120,48 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
 				phone: $scope.account.phone
 			}).then(function(result) {
 				$rootScope.user.phone = $scope.account.phone;
+				$localStorage.setObject('user', $rootScope.user);
+			}, function(err) {
+				console.log('err', err);
+			});
+		}
+	}
+
+	$scope.updateResidence = function(accountForm) {
+		if (!accountForm.residence.$valid) {
+			$scope.errorMsg = accountForm.residence.$error.maxlength ? "你这个名忒长！" : "咋咋都得给个名哎！";
+			setTimeout(function(){
+				$scope.$apply(function(){
+					$scope.errorMsg = false;
+					$scope.account.residence = $rootScope.user.residence;
+				});
+			}, 2000);
+		} else if ($scope.account.residence != $rootScope.user.residence) {
+			UserService.update($rootScope.user._id, {
+				residence: $scope.account.residence
+			}).then(function(result) {
+				$rootScope.user.residence = $scope.account.residence;
+				$localStorage.setObject('user', $rootScope.user);
+			}, function(err) {
+				console.log('err', err);
+			});
+		}
+	}
+
+	$scope.updateOccupation = function(accountForm) {
+		if (!accountForm.occupation.$valid) {
+			$scope.errorMsg = accountForm.occupation.$error.maxlength ? "你这个名忒长！" : "咋咋都得给个名哎！";
+			setTimeout(function(){
+				$scope.$apply(function(){
+					$scope.errorMsg = false;
+					$scope.account.occupation = $rootScope.user.occupation;
+				});
+			}, 2000);
+		} else if ($scope.account.occupation != $rootScope.user.occupation) {
+			UserService.update($rootScope.user._id, {
+				occupation: $scope.account.occupation
+			}).then(function(result) {
+				$rootScope.user.occupation = $scope.account.occupation;
 				$localStorage.setObject('user', $rootScope.user);
 			}, function(err) {
 				console.log('err', err);

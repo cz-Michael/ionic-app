@@ -1,13 +1,31 @@
 'use strict';
 
-app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, UserService) {
+app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, UserService, UtilService) {
     //Didsplay back button
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = true;
     });
 
-    $scope.readAndAgree = true
 
+    $scope.chooseHometown = function () {
+        $ionicPopup.show({
+            templateUrl: 'templates/home-towns.html',
+            title: '选择你的老家',
+            subTitle: '',
+            scope: $scope,
+            buttons: [
+                {
+                    text: '<b>确认</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        console.log($scope.homeTown)
+                    }
+                }
+            ]
+        });
+    }
+
+    $scope.readAndAgree = true
     $scope.signUp = function(user) {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.close();
@@ -19,7 +37,11 @@ app.controller('SignUpCtrl', function($scope, $rootScope, $state, $ionicLoading,
         UserService.signUp({
             username: user.username,
             password: user.password,
-            nickname: user.nickname
+            nickname: UtilService.cleanSentence(user.nickname),
+            gender: user.gender,
+            home_town: user.home_town,
+            residence: user.residence,
+            occupation: user.occupation
         }).then(function(result) {
             $scope.success = true;
             $rootScope.username = result.user.username;
