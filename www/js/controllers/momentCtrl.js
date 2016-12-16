@@ -6,11 +6,15 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 	$scope.isLoading = false;
 
 	PostService.getTwenty((new Date()).getTime()).then(function(data) {
+alert('data')
 		data.map(function(item){
          	item.created_at_from_now = moment(new Date(item.created_at)).fromNow();
          	$scope.posts.push(item)
         })
-	}, function(error) {});
+	}, function(error) {
+console.log(error)
+alert('err')
+	});
 	if ($rootScope.user) {
 		PostService.getNewComment().then(function(data) {
 			if (data) {
@@ -156,7 +160,7 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 	$scope.addComment = function(post) {
 		if ($rootScope.isLoggedIn) {
 			if(post.newComment && post.newComment.content && post.newComment.content.split(':')[1] != ' ') {
-	            if (post.newComment.to && post.newComment.content.split(':')[0] != `@${post.newComment.to.nickname}`) {
+	            if (post.newComment.to && post.newComment.content.split(':')[0] != ('@' + post.newComment.to.nickname)) {
 	                post.newComment.to = null
 	            }
 	            PostService.comment(post).then(function(data) {
@@ -180,7 +184,7 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 
 	$scope.replyComment = function(post, comment) {
 		post.newComment = {
-			content: `@${comment.from.nickname}: `,
+			content: '@' + comment.from.nickname + ': ',
 			to: comment.from
 		}
 		post.autoFocus = true;

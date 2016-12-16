@@ -26,7 +26,7 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
     },
     getChatByCid: function(cid) {
       return $q(function(resolve, reject) {
-        $http.get(`${Config.apiEndpoint()}api/v1/chats/${cid}`, {
+        $http.get(Config.apiEndpoint() + 'api/v1/chats/' + cid, {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
@@ -42,7 +42,7 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
     },
     removeChatByCid: function(cid) {
       return $q(function(resolve, reject) {
-        $http.delete(`${Config.apiEndpoint()}api/v1/chats/${cid}`, {
+        $http.delete(Config.apiEndpoint() + 'api/v1/chats/' + cid, {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
@@ -58,7 +58,7 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
     },
     getChatsByUid: function(uid) {
       return $q(function(resolve, reject) {
-        $http.get(`${Config.apiEndpoint()}api/v1/${uid}/chats`, {
+        $http.get(Config.apiEndpoint() + 'api/v1/' + uid + '/chats', {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
@@ -74,7 +74,7 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
     },
     getUnreadChatsByUid: function(uid) {
       return $q(function(resolve, reject) {
-        $http.get(`${Config.apiEndpoint()}api/v1/${uid}/unread-chats`, {
+        $http.get(Config.apiEndpoint() + 'api/v1/' + uid + '/unread-chats', {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
@@ -108,7 +108,7 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
     },
     getMessagesByCid: function(cid) {
       return $q(function(resolve, reject) {
-        $http.get(`${Config.apiEndpoint()}api/v1/chats/${cid}/messages`, {
+        $http.get(Config.apiEndpoint() + 'api/v1/chats/' + cid +'/messages', {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
@@ -124,7 +124,7 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
     },
     blockChat: function(cid, isBlock) {
       return $q(function(resolve, reject) {
-        $http.put(`${Config.apiEndpoint()}api/v1/chats/${cid}`, {
+        $http.put(Config.apiEndpoint() + 'api/v1/chats/' + cid, {
           action: isBlock ? 'block' : 'unblock'
         }, {
           headers: {

@@ -48,7 +48,7 @@ app.factory('UserService', function($http, $q, $rootScope, Config) {
 
     report: function(data) {
       return $q(function(resolve, reject) {
-        $http.post(`${Config.apiEndpoint()}api/v1/users/${data.defendant}/report`, {
+        $http.post(Config.apiEndpoint() + 'api/v1/users/' + data.defendant + '/report', {
           content: data.content
         }, {
           headers: {

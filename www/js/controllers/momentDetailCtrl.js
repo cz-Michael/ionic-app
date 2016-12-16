@@ -33,7 +33,7 @@ app.controller('MomentDetailCtrl', function($scope, $state, $rootScope, $statePa
 
     $scope.addComment = function(post) {
         if(post.newComment && post.newComment.content && post.newComment.content.split(':')[1] != ' ') {
-            if (post.newComment.to && post.newComment.content.split(':')[0] != `@${post.newComment.to.nickname}`) {
+            if (post.newComment.to && post.newComment.content.split(':')[0] != ('@' + post.newComment.to.nickname)) {
                 post.newComment.to = null
             }
             PostService.comment(post).then(function(data) {
@@ -54,7 +54,7 @@ app.controller('MomentDetailCtrl', function($scope, $state, $rootScope, $statePa
 
     $scope.replyComment = function(post, comment) {
         post.newComment = {
-            content: `@${comment.from.nickname}: `,
+            content: '@' + comment.from.nickname + ': ',
             to: comment.from
         }
         post.autoFocus = true;

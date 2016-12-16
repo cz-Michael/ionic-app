@@ -40,11 +40,19 @@ app.factory('PostService', function($http, $rootScope, $q, Config) {
     },
     getTwenty: function(created_at) {
       return $q(function(resolve, reject) {
-        $http.get(Config.apiEndpoint() + 'twenty-posts/' + created_at)
+        $http.get(Config.apiEndpoint() + 'twenty-posts/' + created_at, {
+          'Origin': '*'
+        })
         .success(function(data, status, headers, config) {
+console.log(data)
+console.log(status)
+console.log(JSON.stringify(headers, null, 2))
           resolve(data);
         })
         .error(function(data, status, headers, config) {
+console.log(data)
+console.log(status)
+console.log(JSON.stringify(headers, null, 2))
           reject(data);
         });
       });
@@ -73,7 +81,7 @@ app.factory('PostService', function($http, $rootScope, $q, Config) {
     },
     getByUid: function(uid) {
       return $q(function(resolve, reject) {
-        $http.get(Config.apiEndpoint() + `users/${uid}/posts`)
+        $http.get(Config.apiEndpoint() + 'users/' + uid + '/posts')
         .success(function(data, status, headers, config) {
           resolve(data);
         })
@@ -84,7 +92,7 @@ app.factory('PostService', function($http, $rootScope, $q, Config) {
     },
     removeById: function(pid) {
       return $q(function(resolve, reject) {
-        $http.delete(Config.apiEndpoint() + `api/v1/posts/${pid}`, {
+        $http.delete(Config.apiEndpoint() + 'api/v1/posts/' + pid, {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
