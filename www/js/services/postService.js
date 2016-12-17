@@ -40,19 +40,11 @@ app.factory('PostService', function($http, $rootScope, $q, Config) {
     },
     getTwenty: function(created_at) {
       return $q(function(resolve, reject) {
-        $http.get(Config.apiEndpoint() + 'twenty-posts/' + created_at, {
-          'Origin': '*'
-        })
+        $http.get(Config.apiEndpoint() + 'twenty-posts/' + created_at)
         .success(function(data, status, headers, config) {
-console.log(data)
-console.log(status)
-console.log(JSON.stringify(headers, null, 2))
           resolve(data);
         })
         .error(function(data, status, headers, config) {
-console.log(data)
-console.log(status)
-console.log(JSON.stringify(headers, null, 2))
           reject(data);
         });
       });

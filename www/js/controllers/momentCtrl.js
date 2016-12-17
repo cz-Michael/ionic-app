@@ -6,15 +6,11 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 	$scope.isLoading = false;
 
 	PostService.getTwenty((new Date()).getTime()).then(function(data) {
-alert('data')
 		data.map(function(item){
          	item.created_at_from_now = moment(new Date(item.created_at)).fromNow();
          	$scope.posts.push(item)
         })
-	}, function(error) {
-console.log(error)
-alert('err')
-	});
+	}, function(error) {});
 	if ($rootScope.user) {
 		PostService.getNewComment().then(function(data) {
 			if (data) {
