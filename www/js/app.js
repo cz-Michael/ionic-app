@@ -1,7 +1,7 @@
 // Ionic Starter App
 app = angular.module('ionic-app', ['ionic', 'ion-gallery', 'ngCordova'])
 
-app.run(function($ionicPlatform, $rootScope, $localStorage) {
+app.run(function($ionicPlatform, $rootScope, $localStorage, $cordovaPush, ChatService, DeviceService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,47 +17,49 @@ app.run(function($ionicPlatform, $rootScope, $localStorage) {
 
     ionic.Platform.fullScreen();
 
-    // if ($rootScope.user) {
-    //   ChatService.getUnreadChatsByUid($rootScope.user._id).then(function(data) {
-    //     if (data) {
-    //       $rootScope.chatBadge = data.length
-    //     }
-    //   }, function(err){})
-    // }
+    if ($rootScope.user) {
+      ChatService.getUnreadChatsByUid($rootScope.user._id).then(function(data) {
+        if (data) {
+          $rootScope.chatBadge = data.length
+        }
+      }, function(err){})
+    }
   });
 
   document.addEventListener("deviceready", function(){
-
+alert('device ready')
     // Reference: https://github.com/phonegap/phonegap-plugin-push
-    // var push = PushNotification.init({
-    //     android: {
-    //         senderID: "liangshanquan"
-    //     },
-    //     ios: {
-    //         alert: "true",
-    //         badge: "true",
-    //         sound: "true",
-    //         clearBadge: "true"
-    //     },
-    //     windows: {}
-    // });
+    var push = PushNotification.init({
+        android: {
+            senderID: "liangshanquan"
+        },
+        ios: {
+            alert: "true",
+            badge: "true",
+            sound: "true",
+            clearBadge: "true"
+        },
+        windows: {}
+    });
 
-    // push.on('registration', function(data) {
-    //     DeviceService.create({
-    //       device_id: data.registrationId,
-    //       type: 'ios' // TODO: Fix hard code
-    //     }).then(function(result) {
-    //       $rootScope.device_id = data.registrationId;
-    //     }, function(err) {
-    //       if (err.code == 409) {
-    //         $rootScope.device_id = data.registrationId;
-    //       } else {
-    //         alert('System Err: Failed to save your device ID.');
-    //       }
-    //     });
-    // });
+    push.on('registration', function(data) {
+alert('registration done')
+console.log(JSON.stringify(data, null, 2))
+      DeviceService.create({
+        device_id: data.registrationId,
+        type: 'android'
+      }).then(function(result) {
+        $rootScope.device_id = data.registrationId;
+      }, function(err) {
+        if (err.code == 409) {
+          $rootScope.device_id = data.registrationId;
+        } else {
+          alert('System Err: Failed to save your device ID.');
+        }
+      });
+    });
 
-    // push.on('notification', function(data) {
+    push.on('notification', function(data) {
       // push.getApplicationIconBadgeNumber(function(n) {
       //   alert('current' + n)
       //     push.setApplicationIconBadgeNumber(function() {}, function() {}, ++n);
@@ -68,28 +70,27 @@ app.run(function($ionicPlatform, $rootScope, $localStorage) {
       // data.sound,
       // data.image,
       // data.additionalData
-    // });
+    });
 
-    // push.on('error', function(e) {
-    //   alert('System Err: ' + e.message);
-    // });
+    push.on('error', function(e) {
+      alert('System Err: ' + e.message);
+    });
 
-    // $rootScope.pushNotification = push;
+    $rootScope.pushNotification = push;
   }, false);
 
   document.addEventListener("resume", function() {
-      // if ($rootScope.pushNotification) {
-      //   $rootScope.pushNotification.setApplicationIconBadgeNumber(function() {}, function() {}, 0);
-      // }
+      if ($rootScope.pushNotification) {
+        $rootScope.pushNotification.setApplicationIconBadgeNumber(function() {}, function() {}, 0);
+      }
 
-      // if ($rootScope.user) {
-      //   ChatService.getUnreadChatsByUid($rootScope.user._id).then(function(data) {
-      //     if (data) {
-      //       $rootScope.chatBadge = data.length
-      //     }
-      //   }, function(err){})
-      // }
-
+      if ($rootScope.user) {
+        ChatService.getUnreadChatsByUid($rootScope.user._id).then(function(data) {
+          if (data) {
+            $rootScope.chatBadge = data.length
+          }
+        }, function(err){})
+      }
       $rootScope.$broadcast('onResume');
   }, false);
 

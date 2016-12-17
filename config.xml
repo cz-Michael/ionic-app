@@ -8,11 +8,9 @@
       梁山人
   </author>
   <content src="index.html"/>
-  
   <access origin="*"/>
-  <allow-navigation href="*" />
-  <allow-intent href="*" />
-
+  <allow-navigation href="*"/>
+  <allow-intent href="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -71,4 +69,5 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
+  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>
