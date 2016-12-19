@@ -5,7 +5,7 @@ node_modules/
 
 platforms/
 !plateforms/platforms.json
-!plateforms/android/
+!plateforms/android/*
 
 hooks/
 www/lib/
