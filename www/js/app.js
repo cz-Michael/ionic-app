@@ -31,7 +31,7 @@ app.run(function($ionicPlatform, $rootScope, $cordovaPush, $localStorage, Device
     // Reference: https://github.com/phonegap/phonegap-plugin-push
     var push = PushNotification.init({
         android: {
-            senderID: "liangshanquan"
+            senderID: "330620906842"
         },
         ios: {
             alert: "true",
