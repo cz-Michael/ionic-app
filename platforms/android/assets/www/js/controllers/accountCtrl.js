@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService, UtilService) {
-	$scope.account = Object.assign({}, $rootScope.user); // Object clone
+	$scope.account = (JSON.parse(JSON.stringify($rootScope.user)));
 
 	$scope.settings = {
 		enableFriends: true

@@ -27,11 +27,10 @@ app.run(function($ionicPlatform, $rootScope, $localStorage, $cordovaPush, ChatSe
   });
 
   document.addEventListener("deviceready", function(){
-alert('device ready')
     // Reference: https://github.com/phonegap/phonegap-plugin-push
     var push = PushNotification.init({
         android: {
-            senderID: "liangshanquan"
+            senderID: "330620906842"
         },
         ios: {
             alert: "true",
@@ -43,8 +42,6 @@ alert('device ready')
     });
 
     push.on('registration', function(data) {
-alert('registration done')
-console.log(JSON.stringify(data, null, 2))
       DeviceService.create({
         device_id: data.registrationId,
         type: 'android'

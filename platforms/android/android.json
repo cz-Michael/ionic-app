@@ -121,7 +121,7 @@
                 "parents": {
                     "/resources": [
                         {
-                            "xml": "<string name=\"google_app_id\">liangshanquan</string>",
+                            "xml": "<string name=\"google_app_id\">330620906842</string>",
                             "count": 1
                         }
                     ]
@@ -158,7 +158,7 @@
             "PACKAGE_NAME": "co.liangshanquan.app"
         },
         "phonegap-plugin-push": {
-            "SENDER_ID": "liangshanquan",
+            "SENDER_ID": "330620906842",
             "PACKAGE_NAME": "co.liangshanquan.app"
         }
     },

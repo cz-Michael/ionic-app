@@ -45,8 +45,10 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 			});
 			if ($rootScope.user) {
 				PostService.getNewComment().then(function(data) {
-					$scope.newComments = data.comments;
-					$rootScope.momentBadge = data.comments.length;
+					if (data) {
+						$scope.newComments = data.comments;
+						$rootScope.momentBadge = data.comments.length;
+					}
 				}, function(error) {});
 			}
 		}

@@ -7,16 +7,6 @@
         "is_top_level": false,
         "variables": {}
     },
-    "phonegap-plugin-push": {
-        "source": {
-            "type": "registry",
-            "id": "phonegap-plugin-push@1.8.1"
-        },
-        "is_top_level": true,
-        "variables": {
-            "SENDER_ID": "liangshanquan"
-        }
-    },
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
@@ -24,5 +14,15 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@1.8.1"
+        },
+        "is_top_level": true,
+        "variables": {
+            "SENDER_ID": "330620906842"
+        }
     }
 }
