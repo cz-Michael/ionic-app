@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService, UtilService) {
+app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionSheet, $ionicHistory, $cordovaCamera, $localStorage, UserService, UtilService, DeviceService) {
 	$scope.account = Object.assign({}, $rootScope.user); // Object clone
 
 	$scope.settings = {
@@ -46,6 +46,9 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
 				return true;
 			},
 			destructiveButtonClicked: function() {
+
+				DeviceService.removeUser($rootScope.keys);
+
 				$rootScope.isLoggedIn = false;
 				$rootScope.user = undefined;
 				$rootScope.keys = undefined;
@@ -56,7 +59,6 @@ app.controller('AccountCtrl', function($scope, $rootScope, $state, $ionicActionS
 				return true;
 			}
 		});
-
 	}
 
 	$scope.updateNickname = function(accountForm) {
