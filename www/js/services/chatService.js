@@ -106,9 +106,9 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
         });
       });
     },
-    getMessagesByCid: function(cid, before) {
+    getMessagesByCid: function(cid, limit, before) {
       return $q(function(resolve, reject) {
-        let url = Config.apiEndpoint() + 'api/v1/chats/' + cid + '/messages?limit=10'
+        var url = Config.apiEndpoint() + 'api/v1/chats/' + cid + '/messages?limit=' + limit || 20
         if (before) {
           url = url + '&before=' + before
         }
