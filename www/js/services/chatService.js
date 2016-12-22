@@ -106,16 +106,20 @@ app.factory('ChatService', function($http, $rootScope, $q, Config) {
         });
       });
     },
-    getMessagesByCid: function(cid) {
+    getMessagesByCid: function(cid, before) {
       return $q(function(resolve, reject) {
-        $http.get(`${Config.apiEndpoint()}api/v1/chats/${cid}/messages`, {
+        let url = Config.apiEndpoint() + 'api/v1/chats/' + cid + '/messages?limit=10'
+        if (before) {
+          url = url + '&before=' + before
+        }
+        $http.get(url, {
           headers: {
             'pk': $rootScope.keys.pk,
             'sk': $rootScope.keys.sk
           }
         })
         .success(function(data, status, headers, config) {
-          resolve(data);
+          resolve(data.reverse());
         })
         .error(function(data, status, headers, config) {
           reject(data);
