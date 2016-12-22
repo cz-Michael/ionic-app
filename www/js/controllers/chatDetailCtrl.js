@@ -52,7 +52,7 @@ app.controller('ChatDetailCtrl', function($scope, $rootScope, $state, $statePara
 
   $scope.getMore = function() {
     $scope.isLoading = true
-    ChatService.getMessagesByCid($stateParams.chatId, (new Date($scope.messages[0].created_at)).getTime()).then(function(messages) {
+    ChatService.getMessagesByCid($stateParams.chatId, 5, (new Date($scope.messages[0].created_at)).getTime()).then(function(messages) {
       $scope.messages = messages.concat($scope.messages)
       $scope.isLoading = false
     }, function(error) {})
