@@ -6,8 +6,10 @@
 -->
 <ion-view view-title="{{chat.name}}">
   <ion-content class="padding" style="overflow: hidden; margin-top: 12px;">
-
-    <div style="overflow-y: auto; height: 85%;" id='chat-message-list'>
+    <div style="text-align: center;">
+      <ion-spinner class="spinner-assertive" ng-if='isLoading' icon="lines"></ion-spinner>
+    </div>
+    <div style="overflow-y: auto; height: 85%;" id='chat-message-list' on-scroll-top="getMore">
       <div ng-repeat="message in messages" style="margin-top: 15px;">
         <div ng-if="message == 'blocked'" style="text-align: center; color: gray; font-size: smaller;">
           <span ng-if="chat.blocked_by && chat.blocked_by.indexOf(user._id) > -1">对不起，请解禁对方后再发送消息！</span>
