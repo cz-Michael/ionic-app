@@ -31,6 +31,7 @@
       </div>
       <div class="item item-body post-item-body">
         <div>
+          <iframe ng-if="isLink(post.content)" width="280" height="300" style="overflow:hidden;" scrolling="no" src="{{post.content}}" frameborder="0" allowfullscreen></iframe>
           {{post.content}}
           <ion-gallery ion-gallery-items="post.images" ion-gallery-toggle="false"></ion-gallery>
         </div>

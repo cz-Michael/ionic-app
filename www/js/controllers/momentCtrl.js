@@ -5,6 +5,17 @@ app.controller('MomentCtrl', function($scope, $rootScope, $state, $stateParams, 
 	$scope.newComments = [];
 	$scope.isLoading = false;
 
+	$scope.isLink = function(content){
+		var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+		var regex = new RegExp(expression);
+
+		if (content.match(regex)) {
+		  return true;
+		} else {
+		  return false;
+		}
+	}
+
 	PostService.getTwenty((new Date()).getTime()).then(function(data) {
 		data.map(function(item){
          	item.created_at_from_now = moment(new Date(item.created_at)).fromNow();

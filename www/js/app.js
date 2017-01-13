@@ -100,10 +100,9 @@ app.run(function($ionicPlatform, $rootScope, $cordovaPush, $localStorage, Device
   } else {
     $rootScope.isLoggedIn = false;
   }
-
 })
 
-app.config(function($stateProvider, $urlRouterProvider, ionGalleryConfigProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider, ionGalleryConfigProvider) {
 
   $stateProvider
     .state('signin', {
@@ -215,5 +214,13 @@ app.config(function($stateProvider, $urlRouterProvider, ionGalleryConfigProvider
     row_size: 3,
     fixed_row_size: true
   });
+
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    'https://**',
+    'http://**'
+  ]);
 
 });
